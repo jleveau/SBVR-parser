@@ -1,0 +1,2 @@
+each tiers_individu that has a prenom2 must have a prenom1.
+each tiers_individu that has a date_de_deces must be decede.

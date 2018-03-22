@@ -1,0 +1,21 @@
+each tiers_individu must have civilité
+
+each tiers_individu nom_patronymique must have nom_patronymique
+each tiers_individu nom_patronymique must match "[a-zA-Z | -]*"
+each tiers_individu nom_d_usage must match "[a-zA-Z | -]*"
+
+each tiers_individu prenom1 must match "[a-zA-Z | -]*"
+each tiers_individu prenom2 must match "[a-zA-Z | -]*"
+each tiers_individu prenom3 must match "[a-zA-Z | -]*"
+
+each tiers_individu prenom1 must be uppercased
+each tiers_individu prenom2 must be uppercased
+each tiers_individu prenom3 must be uppercased
+
+a tiers_individu that has prenom2 must have prenom1
+a tiers_individu that has prenom3 must have prenom2
+
+a tiers_individu that has date_de_deces must be decede
+each tiers_individu date_de_naissance must be before now
+each tiers_individu date_de_deces must be before now
+

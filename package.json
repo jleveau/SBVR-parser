@@ -1,0 +1,19 @@
+{
+  "name": "sbvrparser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "parser.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antlr4": "^4.7.1",
+    "chai": "^4.1.2",
+    "path": "^0.12.7"
+  }
+}
