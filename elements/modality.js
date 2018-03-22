@@ -1,11 +1,18 @@
-class Modality {
+const Node = require('./node');
 
+class Modality extends Node {
+    constructor(name) {
+        super(name);
+    }
+
+    getChilds() {
+        return [];
+    }
 }
 
 class Obligation extends Modality {
     constructor() {
-        super();
-        this.name = "must"
+        super("must");
     }
 }
 

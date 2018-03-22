@@ -1,1 +1,4 @@
-each tiers_individu of my_group that has a prenom that is equal to foo that is equal to foo  must have a prenom1 that is equal to bar.
+each tiers_individu of a list that has a name that is equal to bar, that has a prenom that is in a list that has a name that is equal to foo, must have a prenom1 that is equal to foobar.
+
+
+each tiers_individu of my_group, that has a prenom that is in my_list and not is in my_list2, must have length that is lesser than 10.

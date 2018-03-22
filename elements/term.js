@@ -1,5 +1,12 @@
-module.exports = class Term {
-   constructor(name) {
-       this.name = name;
-   }
-};
+const Node = require('./node');
+
+module.exports =
+    class Term extends Node {
+        constructor(name) {
+            super(name);
+        }
+
+        getChilds() {
+            return [];
+        }
+    };

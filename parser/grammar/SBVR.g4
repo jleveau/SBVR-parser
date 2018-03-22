@@ -6,15 +6,15 @@ date_value                   : IDENTIFIER;
 numeric_value                : IDENTIFIER;
 boolean_value                : IDENTIFIER;
 
-is_in                        : IS_IN context;
-be                           : BE boolean_value;
-matches                      : MATCHES regex;
-have                         : HAVE context;
-equal                        : EQUAL context;
-lesser_than                  : LESSER_THAN numeric_value;
-greater_than                 : GREATER_THAN numeric_value;
-before                       : BEFORE date_value;
-after                        : AFTER date_value;
+is_in                        : IS_IN;
+be                           : BE;
+matches                      : MATCHES;
+have                         : HAVE;
+equal                        : EQUAL;
+lesser_than                  : LESSER_THAN;
+greater_than                 : GREATER_THAN;
+before                       : BEFORE;
+after                        : AFTER;
 
 and                          : AND;
 or                           : OR;
@@ -22,12 +22,24 @@ not                          : NOT;
 binary_logical_op            : or | and;
 unary_logical_op             : not;
 
-constraint_elem              : have | matches | equal | lesser_than| greater_than | before | after | is_in;
-constraint_expr              : unary_logical_op constraint_elem | constraint_elem;
-constraint                   : constraint_expr binary_logical_op constraint | constraint_expr;
+constraint_operator          : have | matches | equal | lesser_than| greater_than | before | after | is_in;
+constraint_operation         : constraint_operator context;
 
-term                         : IDENTIFIER;
-attribut_specifier           : OF context;
+unary_expr                   : unary_logical_op constraint_operation;
+binary_expr                  : constraint_operation binary_logical_op constraint;
+
+constraint                   : constraint_operation |
+                               unary_expr  |
+                               binary_expr
+                               ;
+
+term                         : IDENTIFIER |
+                                date_value |
+                                numeric_value |
+                                boolean_value |
+                                regex;
+
+attribut_specifier           : OF context COMA;
 constraint_specifier         : THAT constraint;
 specifier                    : attribut_specifier | constraint_specifier;
 
@@ -35,10 +47,7 @@ a                            : A;
 no                           : NO;
 some                         : SOME;
 each                         : EACH;
-quantifier                   : EACH | SOME | NO | A;
-
-obligation                   : OBLIGATION;
-modality                     : obligation;
+quantifier                   : each | some | no | a;
 
 quantified_context           : quantifier context;
 
@@ -46,7 +55,10 @@ context                      : context specifier |
                                quantified_context |
                                term;
 
-business_rule                : context modality constraint DOT;
+obligation                   : OBLIGATION;
+modality                     : obligation;
+
+business_rule                : context COMA modality constraint DOT;
 
 business_rules               : business_rule business_rules |;
 main                         : business_rules EOF;
@@ -65,6 +77,7 @@ fragment QUOTE      : '"';
 
 SKIPED              : ( WHITESPACE | COMMENT | LINE_JOINING ) -> skip ;
 LINE_JOINING        : ('\r'? '\n' | '\r')+ ;
+COMA                : ',';
 NOT                 : 'not';
 AND                 : 'and';
 OR                  : 'or';
